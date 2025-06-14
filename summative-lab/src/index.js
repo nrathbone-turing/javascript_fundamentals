@@ -1,5 +1,5 @@
 const questions = require('./questions');
-const promptSync = require("prompt-sync")();
+const prompt = require("prompt-sync")();
 
 function startGame() {
     const currentQuestion = questions[1];
@@ -14,14 +14,28 @@ function askQuestion(currentQuestion) {
         console.log(`${index + 1}. ${choice}`);
     });
 
-    const userInput = promptSync("Your answer: ")
+    const userInput = prompt("Your answer: ")
     const selected = currentQuestion.choices[parseInt(userInput) - 1];
  
     return selected
 }
 
 function checkAnswer(selected, correct) {
-  return selected === correct;
+    let isCorrect;
+    let feedback;
+    
+    if (selected === correct) {
+        isCorrect = true;
+        feedback = "Correct!";
+    } else {
+        isCorrect = false;
+        feedback = `Incorrect. The correct answer is ${correct}.`;
+    }
+
+    return {
+        isCorrect: isCorrect,
+        feedback: feedback
+    };
 }
 
 function nextQuestion() {

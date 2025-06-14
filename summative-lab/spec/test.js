@@ -1,6 +1,6 @@
 jest.mock('prompt-sync', () => {
   return () => {
-    return jest.fn(() => "3"); // Simulate user selecting "Paris"
+    return jest.fn(() => "3"); // Mock the user selecting "Paris"
   };
 });
 const {
@@ -57,23 +57,31 @@ describe("Trivia Game", () => {
     describe("checkAnswer", () => {
         it("should return true if the answer is correct", () => {
         // test correct answer logic
-            const selected = "Paris";
-            const correct = "Paris";
+            const result = checkAnswer("Paris", "Paris");
 
-            expect(checkAnswer(selected, correct)).toBe(true);
+            expect(result.isCorrect).toBe(true);
         });
 
         it("should return false if the answer is incorrect", () => {
         // test incorrect answer logic
 
-            const selected = "Madrid";
-            const correct = "Paris";
+            const result = checkAnswer("Madrid", "Paris");
 
-            expect(checkAnswer(selected, correct)).toBe(false);
+            expect(result.isCorrect).toBe(false);
         });
 
-        xit("should provide feedback after answering", () => {
+        it("should provide feedback after answering", () => {
         // test feedback output
+
+        // correct response
+        const correctFeedback = checkAnswer("Paris", "Paris").feedback;
+        
+        expect(correctFeedback).toBe("Correct!");
+        
+        // incorrect response
+        const incorrectFeedback = checkAnswer("Madrid", "Paris").feedback;
+        
+        expect(incorrectFeedback).toBe("Incorrect. The correct answer is Paris.");
         });
     });
 
