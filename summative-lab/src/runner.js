@@ -1,3 +1,3 @@
-const { startGame } = require("./src/index");
+const { startGame } = require("./index");
 
 startGame();

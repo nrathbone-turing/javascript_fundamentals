@@ -1,9 +1,11 @@
  // globally mocking the user selecting "Paris" as their selection to the question at the second index position for testing
-jest.mock('prompt-sync', () => {
-  return () => {
-    return jest.fn(() => "3");
-  };
-});
+// jest.mock('prompt-sync', () => {
+//   return () => {
+//     return jest.fn(() => "3");
+//   };
+// });
+// using node's readline instead for better asynchronous function timers/support
+// jest.mock("readline");
 
 const index = require('../src/index');
 const {
@@ -41,22 +43,99 @@ describe("Trivia Game", () => {
     });
 
     describe("askQuestion", () => {
-        it("should display the current question and choices", () => {
-        // test question rendering
         
-            const currentQuestion = questions[1]; // "What is the capital of France?"
-            const selected = askQuestion(currentQuestion);
-            
-            expect(typeof selected).toBe("string");
+        beforeEach(() => {
+            jest.useFakeTimers();
+            jest.clearAllTimers();            
         });
 
-        it("should accept user input and validate it", () => {
-        // test input handling
-            
-            const selected = askQuestion(questions[1]);
-            
-            expect(selected).toBe("Paris");
+        afterEach(() => {
+            jest.clearAllTimers();
+            jest.useRealTimers();
+            jest.resetModules();
         });
+
+        it("should return an answer if user selects a valid choice", async () => {
+           jest.resetModules();
+            // mock readline interface directly
+           jest.doMock("readline", () => ({
+                createInterface: () => ({
+                    question: (prompt, cb) => cb("3"),
+                    close: () => {},
+                    pause: () => {}
+                })
+            }));
+
+            const { askQuestion } = require("../src/index");
+
+            const mockQuestion = {
+                question: "What is the capital of France?",
+                choices: ["Berlin", "Madrid", "Paris"],
+                answer: "Paris"
+            };
+
+            const resultPromise = askQuestion(mockQuestion, 5000);
+
+            jest.advanceTimersByTime(100); // simulate timer running
+
+            const result = await resultPromise;
+
+            expect(result).toEqual({ type: "answer", value: "Paris" });
+        });
+
+        it("should return invalid if user input doesn't match any choice", async () => {
+            jest.resetModules();
+            jest.doMock("readline", () => ({
+                createInterface: () => ({
+                    question: (prompt, cb) => cb("42"),
+                    close: () => {},
+                    pause: () => {}
+                })
+            }));
+
+            const { askQuestion } = require("../src/index");
+
+            const mockQuestion = {
+                question: "Pick a number",
+                choices: ["One", "Two", "Three"],
+                answer: "Three"
+            };
+
+            const result = await askQuestion(mockQuestion, 5000);
+            
+            expect(result.type).toBe("invalid");
+        });
+
+        it("should return timeout if no input within time limit", 
+            async () => {
+                jest.resetModules();
+                jest.doMock("readline", () => ({
+                    createInterface: () => ({
+                        question: () => {}, // no call to callback simulates no user input
+                        close: () => {},
+                        pause: () => {}
+                    })
+                }));
+
+                const { askQuestion } = require("../src/index");
+
+                const mockQuestion = {
+                    question: "Timed question",
+                    choices: ["A", "B", "C"],
+                    answer: "A"
+                };
+
+                const resultPromise = askQuestion(mockQuestion, 5000);
+                
+                jest.runAllTimers();
+                await new Promise((resolve) => setImmediate(resolve)); // allow timer to resolve
+
+                const result = await resultPromise;
+                
+                expect(result).toEqual({ type: "timeout" });
+            },
+             10000 // increase test timeout to 10s to avoid "Exceeded timeout" error
+        );
     });
 
     describe("checkAnswer", () => {
@@ -69,7 +148,6 @@ describe("Trivia Game", () => {
 
         it("should return false if the answer is incorrect", () => {
         // test incorrect answer logic
-
             const result = checkAnswer("Madrid", "Paris");
 
             expect(result.isCorrect).toBe(false);
@@ -233,4 +311,7 @@ describe("Trivia Game", () => {
         });
     });
 
+    afterAll(() => {
+        jest.useRealTimers();
+    });
 });
