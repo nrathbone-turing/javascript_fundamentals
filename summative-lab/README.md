@@ -52,13 +52,17 @@ Develop your code and script to match the design. Follow these guidelines as you
 
 **1. Efficiency:**
 * Efficiency and readability of the code
+
 **2. Functions and Variables:**
 * Proper use of functions
 * Appropriate variable names
+
 **3. Accuracy:**
 * Ensure the trivia logic works correctly, providing accurate results and scoring.
+
 **4. Coding Best Practices:**
 * Adhere to JavaScript coding conventions, such as consistent indentation, meaningful comments, and appropriate error handling.
+
 **5. Clarity:**
 * Clearly define the input and output of each function.
 * Provide meaningful feedback to users through the CLI.
