@@ -7,7 +7,7 @@ const gameState = {
 };
 
 function startGame() {
-    const currentQuestion = questions[1];
+    const currentQuestion = questions[gameState.currentQuestionIndex];
     
     askQuestion(currentQuestion);
 }
@@ -21,7 +21,8 @@ function askQuestion(currentQuestion) {
 
     const userInput = prompt("Your answer: ")
     const selected = currentQuestion.choices[parseInt(userInput) - 1];
- 
+    
+    // returning a value for testing
     return selected
 }
 
@@ -56,15 +57,28 @@ function nextQuestion() {
 }
 
 function endGame() {
-
+    console.log("Game over!");
+    console.log(`Your final score is: ${gameState.score}/${questions.length}`);
 }
 
-function startTimer() {
+let timerId;
 
+function startTimer(durationInSeconds) {
+    let remaining = durationInSeconds;
+
+    timerId = setInterval(() => {
+        remaining -= 1;
+        console.log(`Time remaining: ${remaining}s`);
+
+        if (remaining <= 0) {
+            stopTimer();
+            endGame();
+        }
+  }, 1000);
 }
 
 function stopTimer() {
-
+    clearInterval(timerId);
 }
 
 module.exports = {
@@ -77,3 +91,11 @@ module.exports = {
     startTimer,
     stopTimer,
 };
+
+if (require.main === module) {
+  // starting the timer for 30 seconds
+  startTimer(5);
+
+  // starting the game
+  startGame();
+}
