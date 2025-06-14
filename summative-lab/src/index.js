@@ -1,5 +1,10 @@
 const questions = require('./questions');
 const prompt = require("prompt-sync")();
+// helper object to track the relevant details about the game 
+const gameState = {
+  currentQuestionIndex: 0,
+  score: 0
+};
 
 function startGame() {
     const currentQuestion = questions[1];
@@ -39,7 +44,15 @@ function checkAnswer(selected, correct) {
 }
 
 function nextQuestion() {
+    gameState.currentQuestionIndex += 1;
 
+    if (gameState.currentQuestionIndex < questions.length) {
+        const next = questions[gameState.currentQuestionIndex];
+        
+        askQuestion(next);
+    } else {
+        endGame();
+    }
 }
 
 function endGame() {
@@ -55,10 +68,12 @@ function stopTimer() {
 }
 
 module.exports = {
-  startGame,
-  askQuestion,
-  checkAnswer,
-  nextQuestion,
-  endGame,
-  stopTimer,
+    gameState,
+    startGame,
+    askQuestion,
+    checkAnswer,
+    nextQuestion,
+    endGame,
+    startTimer,
+    stopTimer,
 };

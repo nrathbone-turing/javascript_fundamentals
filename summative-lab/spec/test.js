@@ -1,16 +1,21 @@
+ // globally mock the user selecting "Paris"
 jest.mock('prompt-sync', () => {
   return () => {
-    return jest.fn(() => "3"); // Mock the user selecting "Paris"
+    return jest.fn(() => "3");
   };
 });
+
+const index = require('../src/index');
 const {
+  gameState,
   startGame,
   askQuestion,
   checkAnswer,
   nextQuestion,
   endGame,
+  startTimer,
   stopTimer,
-} = require('../src/index');
+} = index;
 const questions = require('../src/questions');
 
 describe("Trivia Game", () => {
@@ -18,12 +23,12 @@ describe("Trivia Game", () => {
     let game;
 
     beforeEach(() => {
-        // Placeholder for a setup test to reset or reinitialize the game state before each test
+        // placeholder for a setup test to reset or reinitialize the game state before each test
         // probably something like `game = new TriviaGame();` or reset score/timer/etc
     });
 
     afterEach(() => {
-        // Placeholder for a teardown test to reset things like clearing timers after each game ends
+        // placeholder for a teardown test to reset things like clearing timers after each game ends
         // for example maybe something like `clearInterval(timer);`
     });
 
@@ -86,12 +91,52 @@ describe("Trivia Game", () => {
     });
 
     describe("nextQuestion", () => {
-        xit("should move to the next question in the quiz", () => {
-        // test question progression
+        let originalAskQuestion;
+        let originalEndGame;
+        
+        beforeEach(() => {
+            // backup originals
+            originalAskQuestion = index.askQuestion;
+            originalEndGame = index.endGame;
+            
+            // reset game state before each test
+            gameState.currentQuestionIndex = 0;
+            global.lastQuestionAsked = null;
+            global.endGameCalled = false;
         });
 
-        xit("should end the game if there are no more questions", () => {
+        afterEach(() => {
+            // restore originals to avoid side effects on other tests
+            index.askQuestion = originalAskQuestion;
+            index.endGame = originalEndGame;
+        });
+        
+        it("should move to the next question in the quiz", () => {
+        // test question progression
+            // replace askQuestion with mock behavior for this test only
+            global.askQuestion = (q) => {
+                global.lastQuestionAsked = q;
+            };
+
+            nextQuestion();
+
+            expect(gameState.currentQuestionIndex).toBe(1);
+            expect(global.lastQuestionAsked).toEqual(questions[1]);
+        });
+
+        it("should end the game if there are no more questions", () => {
         // test game-ending logic
+        // Set index to last question
+            gameState.currentQuestionIndex = questions.length - 1;
+
+            index.endGame = () => {
+                global.endGameCalled = true;
+            };
+
+            nextQuestion();
+
+            expect(gameState.currentQuestionIndex).toBe(questions.length);
+            expect(global.endGameCalled).toBe(true);
         });
     });
 
