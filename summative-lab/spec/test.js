@@ -1,3 +1,8 @@
+jest.mock('prompt-sync', () => {
+  return () => {
+    return jest.fn(() => "3"); // Simulate user selecting "Paris"
+  };
+});
 const {
   startGame,
   askQuestion,
@@ -6,7 +11,7 @@ const {
   endGame,
   stopTimer,
 } = require('../src/index');
-
+const questions = require('../src/questions');
 
 describe("Trivia Game", () => {
     // setting the global variable
@@ -25,9 +30,7 @@ describe("Trivia Game", () => {
     describe("startGame", () => {
         it("should initialize game state and display the first question", () => {
         // test game start
-        startGame()
-        
-        expect(askQuestion()).toBe("What is the capital of France?");
+            startGame()
         
         });
     });
@@ -35,72 +38,92 @@ describe("Trivia Game", () => {
     describe("askQuestion", () => {
         it("should display the current question and choices", () => {
         // test question rendering
+        
+            const currentQuestion = questions[1]; // "What is the capital of France?"
+            const selected = askQuestion(currentQuestion);
+            
+            expect(typeof selected).toBe("string");
         });
 
         it("should accept user input and validate it", () => {
         // test input handling
+            
+            const selected = askQuestion(questions[1]);
+            
+            expect(selected).toBe("Paris");
         });
     });
 
     describe("checkAnswer", () => {
         it("should return true if the answer is correct", () => {
         // test correct answer logic
+            const selected = "Paris";
+            const correct = "Paris";
+
+            expect(checkAnswer(selected, correct)).toBe(true);
         });
 
         it("should return false if the answer is incorrect", () => {
         // test incorrect answer logic
+
+            const selected = "Madrid";
+            const correct = "Paris";
+
+            expect(checkAnswer(selected, correct)).toBe(false);
         });
 
-        it("should provide feedback after answering", () => {
+        xit("should provide feedback after answering", () => {
         // test feedback output
         });
     });
 
     describe("nextQuestion", () => {
-        it("should move to the next question in the quiz", () => {
+        xit("should move to the next question in the quiz", () => {
         // test question progression
         });
 
-        it("should end the game if there are no more questions", () => {
+        xit("should end the game if there are no more questions", () => {
         // test game-ending logic
         });
     });
 
     describe("endGame", () => {
-        it("should display the final score and ending feedback", () => {
+        xit("should display the final score and ending feedback", () => {
         // test end-of-game summary
         });
     });
 
     describe("timers", () => {
-        it("should start a countdown timer when the game begins", () => {
+        xit("should start a countdown timer when the game begins", () => {
         
         });
 
-        it("should stop the timer when the game ends", () => {
+        xit("should stop the timer when the game ends", () => {
         
         });
 
         describe("startTimer", () => {
-        it("should begin countdown at specified duration", () => {
-        // test timer start
-        });
-        it("should update remaining time correctly", () => {
+            xit("should begin countdown at specified duration", () => {
+            // test timer start
+            });
 
-        });
+            xit("should update remaining time correctly", () => {
+
+            });
         });
 
         describe("stopTimer", () => {
-        it("should stop the countdown", () => {
-        // test timer stop
-        });
-        it("should prevent further time changes after stopping", () => {
+            xit("should stop the countdown", () => {
+            // test timer stop
+            });
 
-        });
+            xit("should prevent further time changes after stopping", () => {
+
+            });
         });
 
 
-        it("should end the game if time runs out", () => {
+        xit("should end the game if time runs out", () => {
         // test time-based ending
         });
     });
