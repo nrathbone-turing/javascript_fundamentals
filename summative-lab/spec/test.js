@@ -1,3 +1,13 @@
+const {
+  startGame,
+  askQuestion,
+  checkAnswer,
+  nextQuestion,
+  endGame,
+  stopTimer,
+} = require('../src/index');
+
+
 describe("Trivia Game", () => {
     // setting the global variable
     let game;
@@ -15,6 +25,10 @@ describe("Trivia Game", () => {
     describe("startGame", () => {
         it("should initialize game state and display the first question", () => {
         // test game start
+        startGame()
+        
+        expect(askQuestion()).toBe("What is the capital of France?");
+        
         });
     });
 
