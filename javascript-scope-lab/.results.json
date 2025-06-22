@@ -1,0 +1,200 @@
+{
+  "stats": {
+    "suites": 6,
+    "tests": 13,
+    "passes": 13,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-06-13T02:25:40.336Z",
+    "end": "2025-06-13T02:25:40.555Z",
+    "duration": 219
+  },
+  "tests": [
+    {
+      "title": "is declared using const",
+      "fullTitle": "index.js burgers is declared using const",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "is set to the value of an array that has the following 2 elements: 'Hamburger' and 'Cheeseburger'",
+      "fullTitle": "index.js burgers is set to the value of an array that has the following 2 elements: 'Hamburger' and 'Cheeseburger'",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "is declared using let",
+      "fullTitle": "index.js featuredDrink is declared using let",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "is a string",
+      "fullTitle": "index.js featuredDrink is a string",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "is set to the value 'Strawberry Milkshake'",
+      "fullTitle": "index.js featuredDrink is set to the value 'Strawberry Milkshake'",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "is a function",
+      "fullTitle": "index.js addBurger is a function",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "when called, creates a function-scoped variable named newBurger using the const keyword and assigns it the value 'Flatburger'",
+      "fullTitle": "index.js addBurger when called, creates a function-scoped variable named newBurger using the const keyword and assigns it the value 'Flatburger'",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "when called, uses the .push() array method to add newBurger, which has the value of 'Flatburger', to the burgers array",
+      "fullTitle": "index.js addBurger when called, uses the .push() array method to add newBurger, which has the value of 'Flatburger', to the burgers array",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "has a condition with the value of true",
+      "fullTitle": "index.js if statement has a condition with the value of true",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "creates a block-scoped variable named anotherNewBurger using the const keyword and assigns it the value 'Maple Bacon Burger'",
+      "fullTitle": "index.js if statement creates a block-scoped variable named anotherNewBurger using the const keyword and assigns it the value 'Maple Bacon Burger'",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "uses the .push() array method to add anotherNewBurger, which has the value of 'Maple Bacon Burger', to the burgers array",
+      "fullTitle": "index.js if statement uses the .push() array method to add anotherNewBurger, which has the value of 'Maple Bacon Burger', to the burgers array",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "is a function",
+      "fullTitle": "index.js changeFeaturedDrink is a function",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "when called, changes the value of the featuredDrink variable to 'The JavaShake'",
+      "fullTitle": "index.js changeFeaturedDrink when called, changes the value of the featuredDrink variable to 'The JavaShake'",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    }
+  ],
+  "pending": [],
+  "failures": [],
+  "passes": [
+    {
+      "title": "is declared using const",
+      "fullTitle": "index.js burgers is declared using const",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "is set to the value of an array that has the following 2 elements: 'Hamburger' and 'Cheeseburger'",
+      "fullTitle": "index.js burgers is set to the value of an array that has the following 2 elements: 'Hamburger' and 'Cheeseburger'",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "is declared using let",
+      "fullTitle": "index.js featuredDrink is declared using let",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "is a string",
+      "fullTitle": "index.js featuredDrink is a string",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "is set to the value 'Strawberry Milkshake'",
+      "fullTitle": "index.js featuredDrink is set to the value 'Strawberry Milkshake'",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "is a function",
+      "fullTitle": "index.js addBurger is a function",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "when called, creates a function-scoped variable named newBurger using the const keyword and assigns it the value 'Flatburger'",
+      "fullTitle": "index.js addBurger when called, creates a function-scoped variable named newBurger using the const keyword and assigns it the value 'Flatburger'",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "when called, uses the .push() array method to add newBurger, which has the value of 'Flatburger', to the burgers array",
+      "fullTitle": "index.js addBurger when called, uses the .push() array method to add newBurger, which has the value of 'Flatburger', to the burgers array",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "has a condition with the value of true",
+      "fullTitle": "index.js if statement has a condition with the value of true",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "creates a block-scoped variable named anotherNewBurger using the const keyword and assigns it the value 'Maple Bacon Burger'",
+      "fullTitle": "index.js if statement creates a block-scoped variable named anotherNewBurger using the const keyword and assigns it the value 'Maple Bacon Burger'",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "uses the .push() array method to add anotherNewBurger, which has the value of 'Maple Bacon Burger', to the burgers array",
+      "fullTitle": "index.js if statement uses the .push() array method to add anotherNewBurger, which has the value of 'Maple Bacon Burger', to the burgers array",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "is a function",
+      "fullTitle": "index.js changeFeaturedDrink is a function",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "when called, changes the value of the featuredDrink variable to 'The JavaShake'",
+      "fullTitle": "index.js changeFeaturedDrink when called, changes the value of the featuredDrink variable to 'The JavaShake'",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    }
+  ]
+}

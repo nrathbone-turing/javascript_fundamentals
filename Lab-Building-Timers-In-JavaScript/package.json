@@ -1,0 +1,33 @@
+{
+  "name": "lab-building-timers-in-javascript",
+  "version": "1.0.0",
+  "description": "Lab for building timers using JavaScript (setTimeout and setInterval)",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/learn-co-curriculum/Lab-Building-Timers-In-JavaScript"
+  },
+  "keywords": [
+    "javascript",
+    "timers",
+    "setTimeout",
+    "setInterval",
+    "jest",
+    "testing"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/learn-co-curriculum/Lab-Building-Timers-In-JavaScript/issues"
+  },
+  "homepage": "https://github.com/learn-co-curriculum/Lab-Building-Timers-In-JavaScript#readme",
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
